@@ -1,0 +1,7 @@
+{
+  "name": "alt-mcp",
+  "version": "0.1.0",
+  "description": "Shared MCP servers with no secrets: context7 for library docs, Playwright for browser checks, daisyUI docs.",
+  "license": "MIT",
+  "author": { "name": "altalune-id" }
+}

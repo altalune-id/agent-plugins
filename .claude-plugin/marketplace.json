@@ -1,47 +1,87 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
   "name": "altalune",
-  "owner": { "name": "altalune-id" },
+  "owner": {
+    "name": "altalune-id"
+  },
   "description": "Shared skills, agents and hooks for Go, Vue and htmx work, with upstream skills pinned by git.",
   "plugins": [
     {
       "name": "go",
       "description": "Idiomatic Go (spf13/go-skills).",
-      "source": { "source": "git-subdir", "url": "https://github.com/spf13/go-skills.git", "path": "go", "sha": "383c2f8916313b7f1260a6d15d92a468e4ecc89e" },
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/spf13/go-skills.git",
+        "path": "go",
+        "sha": "383c2f8916313b7f1260a6d15d92a468e4ecc89e"
+      },
       "category": "languages"
     },
     {
       "name": "cobra-viper",
       "description": "Cobra and Viper CLIs (spf13/go-skills).",
-      "source": { "source": "git-subdir", "url": "https://github.com/spf13/go-skills.git", "path": "cobra-viper", "sha": "383c2f8916313b7f1260a6d15d92a468e4ecc89e" },
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/spf13/go-skills.git",
+        "path": "cobra-viper",
+        "sha": "383c2f8916313b7f1260a6d15d92a468e4ecc89e"
+      },
       "category": "languages"
     },
     {
       "name": "go-release",
       "description": "Go release engineering (spf13/go-skills).",
-      "source": { "source": "git-subdir", "url": "https://github.com/spf13/go-skills.git", "path": "go-release", "sha": "383c2f8916313b7f1260a6d15d92a468e4ecc89e" },
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/spf13/go-skills.git",
+        "path": "go-release",
+        "sha": "383c2f8916313b7f1260a6d15d92a468e4ecc89e"
+      },
       "category": "development"
     },
     {
       "name": "go-spec-reviewer",
       "description": "Review Go design specs before building (spf13/go-skills).",
-      "source": { "source": "git-subdir", "url": "https://github.com/spf13/go-skills.git", "path": "go-spec-reviewer", "sha": "383c2f8916313b7f1260a6d15d92a468e4ecc89e" },
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/spf13/go-skills.git",
+        "path": "go-spec-reviewer",
+        "sha": "383c2f8916313b7f1260a6d15d92a468e4ecc89e"
+      },
       "category": "development"
     },
     {
       "name": "daisyui",
       "description": "daisyUI 5 components, colors and themes (saadeghi/daisyui).",
-      "source": { "source": "git-subdir", "url": "https://github.com/saadeghi/daisyui.git", "path": "skills/daisyui", "ref": "v5.8.1" },
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/saadeghi/daisyui.git",
+        "path": "skills/daisyui",
+        "ref": "v5.8.1"
+      },
       "strict": false,
-      "skills": ["."],
+      "skills": [
+        "."
+      ],
       "category": "frameworks"
     },
     {
       "name": "antfu-frontend",
       "description": "Vue, Pinia, Vite, Vitest and Nuxt (antfu/skills).",
-      "source": { "source": "git-subdir", "url": "https://github.com/antfu/skills.git", "path": "skills", "sha": "4a6bb39e7b45e26402eb215393c51ccf5df1ca4c" },
+      "source": {
+        "source": "git-subdir",
+        "url": "https://github.com/antfu/skills.git",
+        "path": "skills",
+        "sha": "4a6bb39e7b45e26402eb215393c51ccf5df1ca4c"
+      },
       "strict": false,
-      "skills": ["./vue", "./pinia", "./vite", "./vitest", "./nuxt"],
+      "skills": [
+        "./vue",
+        "./pinia",
+        "./vite",
+        "./vitest",
+        "./nuxt"
+      ],
       "category": "frameworks"
     },
     {
@@ -67,6 +107,12 @@
       "description": "OAuth 2.1, OpenID Connect and MCP authorization checklist by role, with a read-only reviewer agent.",
       "source": "./plugins/alt-oauth",
       "category": "security"
+    },
+    {
+      "name": "alt-mcp",
+      "description": "Shared MCP servers with no secrets: context7, Playwright, daisyUI docs.",
+      "source": "./plugins/alt-mcp",
+      "category": "development"
     }
   ]
 }
