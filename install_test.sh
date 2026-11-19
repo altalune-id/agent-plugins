@@ -43,7 +43,7 @@ expect_count() {
 }
 
 plugins="$(jq '.plugins | length' .claude-plugin/marketplace.json)"
-local_skills="$(find plugins/*/skills -mindepth 1 -maxdepth 1 -type d | wc -l | tr -d ' ')"
+agent_dirs="$(find plugins -mindepth 2 -maxdepth 2 -type d -name agents | wc -l | tr -d ' ')"
 upstream="$(jq '[.plugins[] | select(.source | type == "object") | (.skills // [.name])[]] | length' .claude-plugin/marketplace.json)"
 
 out="$(dry_run none)"
@@ -54,22 +54,28 @@ refuse_line "$out" "npx"
 refuse_line "$out" "go run"
 [[ "$(wc -l <<<"$out" | tr -d ' ')" == "$((plugins + 1))" ]] || fail "claude-only run printed extra lines"
 
-out="$(dry_run both codex opencode)"
+out="$(dry_run all codex opencode gemini cursor-agent)"
 expect_count "$out" "^+ claude plugin install " "$plugins"
-expect_count "$out" "^+ npx --yes skills add .* --agent codex -g$" "$upstream"
-expect_count "$out" "^+ npx --yes skills add .* --agent opencode -g$" "$upstream"
-expect_line "$out" "+ npx --yes skills add spf13/go-skills@383c2f8916313b7f1260a6d15d92a468e4ecc89e --skill go --agent codex -g"
-expect_line "$out" "+ npx --yes skills add saadeghi/daisyui@v5.8.1 --skill daisyui --agent opencode -g"
-expect_line "$out" "+ npx --yes skills add antfu/skills@4a6bb39e7b45e26402eb215393c51ccf5df1ca4c --skill pinia --agent codex -g"
-expect_line "$out" "+ mkdir -p /home/tester/.agents/skills"
-expect_line "$out" "+ cp -R plugins/alt-workflow/skills/alt-gate /home/tester/.agents/skills/"
-expect_count "$out" "^+ cp -R " "$local_skills"
+for tool in codex opencode gemini-cli cursor; do
+  expect_count "$out" "^+ npx --yes skills add .* --agent $tool -g -y$" "$((upstream + 1))"
+  expect_line "$out" "+ npx --yes skills add altalune-id/agent-plugins --skill \\* --agent $tool -g -y"
+done
+expect_line "$out" "+ npx --yes skills add spf13/go-skills@383c2f8916313b7f1260a6d15d92a468e4ecc89e --skill go --agent codex -g -y"
+expect_line "$out" "+ npx --yes skills add saadeghi/daisyui@v5.8.1 --skill daisyui --agent opencode -g -y"
+expect_line "$out" "+ npx --yes skills add antfu/skills@4a6bb39e7b45e26402eb215393c51ccf5df1ca4c --skill pinia --agent gemini-cli -g -y"
+refuse_line "$out" "cp -R"
+expect_count "$out" "^+ go run ./render agents " "$agent_dirs"
 expect_line "$out" "+ go run ./render agents plugins/alt-workflow/agents --codex /home/tester/.codex/agents --opencode /home/tester/.config/opencode/agents"
+expect_line "$out" "+ go run ./render agents plugins/alt-oauth/agents --codex /home/tester/.codex/agents --opencode /home/tester/.config/opencode/agents"
 
 out="$(dry_run codex codex)"
-expect_count "$out" "--agent codex" "$upstream"
+expect_count "$out" "--agent codex" "$((upstream + 1))"
 refuse_line "$out" "--agent opencode"
 expect_line "$out" "+ go run ./render agents plugins/alt-workflow/agents --codex /home/tester/.codex/agents"
+
+out="$(dry_run gemini gemini)"
+expect_count "$out" "--agent gemini-cli" "$((upstream + 1))"
+refuse_line "$out" "go run"
 
 if bash ./install.sh --bogus >/dev/null 2>&1; then
   fail "unknown argument accepted"

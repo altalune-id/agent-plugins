@@ -1,0 +1,11 @@
+{
+  "name": "alt-oauth",
+  "version": "0.1.0",
+  "description": "OAuth 2.1, OpenID Connect and MCP authorization checklist by role, with a read-only reviewer agent for clients, resource servers and MCP servers.",
+  "license": "MIT",
+  "author": {
+    "name": "altalune-id"
+  },
+  "skills": "./skills/",
+  "agents": "./agents/"
+}

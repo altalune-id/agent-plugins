@@ -1,0 +1,56 @@
+{
+  "name": "altalune",
+  "interface": {
+    "displayName": "altalune"
+  },
+  "plugins": [
+    {
+      "name": "htmx",
+      "source": {
+        "source": "local",
+        "path": "./plugins/htmx"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "frameworks"
+    },
+    {
+      "name": "alt-go",
+      "source": {
+        "source": "local",
+        "path": "./plugins/alt-go"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "languages"
+    },
+    {
+      "name": "alt-workflow",
+      "source": {
+        "source": "local",
+        "path": "./plugins/alt-workflow"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "development"
+    },
+    {
+      "name": "alt-oauth",
+      "source": {
+        "source": "local",
+        "path": "./plugins/alt-oauth"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "security"
+    }
+  ]
+}

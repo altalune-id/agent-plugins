@@ -1,0 +1,11 @@
+{
+  "name": "tools",
+  "version": "0.2.0",
+  "description": "Tools with agents and hooks.",
+  "license": "MIT",
+  "author": {
+    "name": "acme"
+  },
+  "skills": "./skills/",
+  "hooks": {}
+}

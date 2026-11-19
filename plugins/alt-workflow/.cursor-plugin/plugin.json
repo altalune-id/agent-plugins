@@ -1,0 +1,13 @@
+{
+  "name": "alt-workflow",
+  "version": "0.1.0",
+  "description": "Lead, design, spec and plan, gates, UI walk, ship, handoff, park, tidy and diet skills, with role agents and the voice hook.",
+  "license": "MIT",
+  "author": {
+    "name": "altalune-id"
+  },
+  "skills": "./skills/",
+  "agents": "./agents/",
+  "hooks": {},
+  "commands": []
+}

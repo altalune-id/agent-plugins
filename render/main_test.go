@@ -118,6 +118,57 @@ func TestBumpWithoutWriteLeavesFile(t *testing.T) {
 	}
 }
 
+var generatedManifests = []string{
+	".agents/plugins/marketplace.json",
+	".cursor-plugin/marketplace.json",
+	"plugins/docs/.codex-plugin/plugin.json",
+	"plugins/docs/.cursor-plugin/plugin.json",
+	"plugins/tools/.codex-plugin/plugin.json",
+	"plugins/tools/.cursor-plugin/plugin.json",
+}
+
+func TestManifests(t *testing.T) {
+	golden := filepath.Join("testdata", "manifests", "repo")
+	out := t.TempDir()
+	if err := os.CopyFS(out, os.DirFS(golden)); err != nil {
+		t.Fatal(err)
+	}
+	for _, f := range generatedManifests {
+		if err := os.Remove(filepath.Join(out, f)); err != nil {
+			t.Fatal(err)
+		}
+	}
+	var stdout, stderr bytes.Buffer
+	if err := run(t.Context(), []string{"manifests", out}, &stdout, &stderr, fakeFetcher{}); err != nil {
+		t.Fatalf("run: %v (stderr %q)", err, stderr.String())
+	}
+	compareDirs(t, out, golden)
+}
+
+func TestManifestsCheck(t *testing.T) {
+	golden := filepath.Join("testdata", "manifests", "repo")
+	var stdout, stderr bytes.Buffer
+	if err := run(t.Context(), []string{"manifests", golden, "--check"}, &stdout, &stderr, fakeFetcher{}); err != nil {
+		t.Fatalf("check on golden repo: %v", err)
+	}
+	out := t.TempDir()
+	if err := os.CopyFS(out, os.DirFS(golden)); err != nil {
+		t.Fatal(err)
+	}
+	stale := filepath.Join(out, "plugins", "docs", ".codex-plugin", "plugin.json")
+	if err := os.WriteFile(stale, []byte("{}\n"), 0o644); err != nil {
+		t.Fatal(err)
+	}
+	err := run(t.Context(), []string{"manifests", out, "--check"}, &stdout, &stderr, fakeFetcher{})
+	if err == nil || !strings.Contains(err.Error(), "plugins/docs/.codex-plugin/plugin.json") {
+		t.Fatalf("check on stale repo: err = %v, want it to name the stale file", err)
+	}
+	got, _ := os.ReadFile(stale)
+	if string(got) != "{}\n" {
+		t.Fatal("--check rewrote a file")
+	}
+}
+
 func TestRunErrors(t *testing.T) {
 	src := filepath.Join("testdata", "agents", "minimal", "in")
 	tests := []struct {
@@ -132,6 +183,8 @@ func TestRunErrors(t *testing.T) {
 		{"agents empty dir", []string{"agents", t.TempDir(), "--codex", t.TempDir()}},
 		{"mcp missing file", []string{"mcp", "testdata/none.json", "--codex", filepath.Join(t.TempDir(), "x.toml")}},
 		{"bump missing file", []string{"bump", "testdata/none.json"}},
+		{"manifests without source", []string{"manifests"}},
+		{"manifests missing catalog", []string{"manifests", t.TempDir()}},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {

@@ -1,14 +1,18 @@
-// Command render converts Claude Code plugin pieces for Codex and opencode and bumps upstream pins in the marketplace catalog.
+// Command render converts Claude Code plugin pieces for Codex, OpenCode and Cursor and bumps upstream pins in the marketplace catalog.
 package main
 
 import (
+	"bytes"
 	"context"
 	"errors"
 	"flag"
 	"fmt"
 	"io"
+	"maps"
 	"os"
 	"os/signal"
+	"path/filepath"
+	"slices"
 	"strings"
 
 	"github.com/altalune-id/agent-plugins/render/internal/convert"
@@ -17,7 +21,8 @@ import (
 const usage = `usage:
   render agents <src dir> [--codex <dir>] [--opencode <dir>]
   render mcp <src.json> [--codex <file>] [--opencode <file>]
-  render bump <marketplace.json> [--write]`
+  render bump <marketplace.json> [--write]
+  render manifests <repo root> [--check]`
 
 func main() {
 	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt)
@@ -39,6 +44,8 @@ func run(ctx context.Context, args []string, stdout, stderr io.Writer, fetcher c
 		return runMCP(args[1:], stdout, stderr)
 	case "bump":
 		return runBump(ctx, args[1:], stdout, stderr, fetcher)
+	case "manifests":
+		return runManifests(args[1:], stdout, stderr)
 	default:
 		return fmt.Errorf("unknown command %q\n%s", args[0], usage)
 	}
@@ -62,7 +69,7 @@ func parse(fs *flag.FlagSet, args []string) (string, error) {
 }
 
 func targets(fs *flag.FlagSet) (codex, opencode *string) {
-	return fs.String("codex", "", "Codex output path"), fs.String("opencode", "", "opencode output path")
+	return fs.String("codex", "", "Codex output path"), fs.String("opencode", "", "OpenCode output path")
 }
 
 func runAgents(args []string, stdout, stderr io.Writer) error {
@@ -132,4 +139,39 @@ func runBump(ctx context.Context, args []string, stdout, stderr io.Writer, fetch
 		return nil
 	}
 	return os.WriteFile(path, out, 0o644)
+}
+
+func runManifests(args []string, stdout, stderr io.Writer) error {
+	fs := flag.NewFlagSet("manifests", flag.ContinueOnError)
+	fs.SetOutput(stderr)
+	check := fs.Bool("check", false, "fail if a generated manifest is missing or stale, without writing")
+	root, err := parse(fs, args)
+	if err != nil {
+		return err
+	}
+	files, err := convert.Manifests(root)
+	if err != nil {
+		return err
+	}
+	var stale []string
+	for _, rel := range slices.Sorted(maps.Keys(files)) {
+		path := filepath.Join(root, filepath.FromSlash(rel))
+		if *check {
+			if got, err := os.ReadFile(path); err != nil || !bytes.Equal(got, files[rel]) {
+				stale = append(stale, rel)
+			}
+			continue
+		}
+		if err := os.MkdirAll(filepath.Dir(path), 0o755); err != nil {
+			return err
+		}
+		if err := os.WriteFile(path, files[rel], 0o644); err != nil {
+			return err
+		}
+		fmt.Fprintln(stdout, "wrote", rel)
+	}
+	if len(stale) > 0 {
+		return fmt.Errorf("manifests out of date, run render manifests: %s", strings.Join(stale, ", "))
+	}
+	return nil
 }

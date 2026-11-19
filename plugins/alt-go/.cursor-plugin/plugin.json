@@ -1,0 +1,10 @@
+{
+  "name": "alt-go",
+  "version": "0.1.0",
+  "description": "Comment discipline, goroutine ownership and Go proverbs.",
+  "license": "MIT",
+  "author": {
+    "name": "altalune-id"
+  },
+  "skills": "./skills/"
+}

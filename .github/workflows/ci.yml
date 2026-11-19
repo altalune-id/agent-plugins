@@ -20,6 +20,7 @@ jobs:
       - run: go vet ./render/...
       - run: make test
       - run: make render-check
+      - run: make manifests-check
 
   validate:
     runs-on: ubuntu-latest

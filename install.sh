@@ -57,14 +57,14 @@ while read -r plugin; do
   run claude plugin install "$plugin@$MARKETPLACE_NAME"
 done < <(jq -r '.plugins[].name' "$CATALOG")
 
-agents=()
-for agent in codex opencode; do
-  if command -v "$agent" >/dev/null 2>&1; then
-    agents+=("$agent")
+tools=()
+for pair in codex:codex opencode:opencode gemini:gemini-cli cursor-agent:cursor; do
+  if command -v "${pair%%:*}" >/dev/null 2>&1; then
+    tools+=("${pair#*:}")
   fi
 done
 
-if [[ ${#agents[@]} -eq 0 ]]; then
+if [[ ${#tools[@]} -eq 0 ]]; then
   exit 0
 fi
 
@@ -82,22 +82,24 @@ upstream_skills() {
 }
 
 while read -r source skill; do
-  for agent in "${agents[@]}"; do
-    run npx --yes skills add "$source" --skill "$skill" --agent "$agent" -g
+  for tool in "${tools[@]}"; do
+    run npx --yes skills add "$source" --skill "$skill" --agent "$tool" -g -y
   done
 done < <(upstream_skills)
 
-run mkdir -p "$HOME/.agents/skills"
-for dir in plugins/*/skills/*/; do
-  run cp -R "${dir%/}" "$HOME/.agents/skills/"
+for tool in "${tools[@]}"; do
+  run npx --yes skills add "$MARKETPLACE_REPO" --skill '*' --agent "$tool" -g -y
 done
 
-render_args=(agents plugins/alt-workflow/agents)
-for agent in "${agents[@]}"; do
-  case "$agent" in
-    codex) render_args+=(--codex "$HOME/.codex/agents") ;;
-    opencode) render_args+=(--opencode "$HOME/.config/opencode/agents") ;;
+targets=()
+for tool in "${tools[@]}"; do
+  case "$tool" in
+    codex) targets+=(--codex "$HOME/.codex/agents") ;;
+    opencode) targets+=(--opencode "$HOME/.config/opencode/agents") ;;
   esac
 done
+[[ ${#targets[@]} -gt 0 ]] || exit 0
 [[ -n "$DRY_RUN" ]] || need go
-run go run ./render "${render_args[@]}"
+for dir in plugins/*/agents; do
+  run go run ./render agents "$dir" "${targets[@]}"
+done

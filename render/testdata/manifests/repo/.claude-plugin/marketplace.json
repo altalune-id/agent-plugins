@@ -1,0 +1,14 @@
+{
+  "name": "acme",
+  "owner": { "name": "acme" },
+  "plugins": [
+    {
+      "name": "upstream",
+      "source": { "source": "git-subdir", "url": "https://github.com/acme/skills.git", "path": "x", "sha": "1111111111111111111111111111111111111111" },
+      "category": "languages"
+    },
+    { "name": "tools", "description": "Tools with agents and hooks.", "source": "./plugins/tools", "category": "development" },
+    { "name": "docs", "description": "Docs skills.", "source": "./plugins/docs", "category": "frameworks" },
+    { "name": "servers", "description": "MCP servers only.", "source": "./plugins/servers", "category": "development" }
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "altalune",
+  "owner": {
+    "name": "altalune-id"
+  },
+  "plugins": [
+    {
+      "name": "htmx",
+      "source": "./plugins/htmx",
+      "description": "htmx 4 guidance, debugging, extensions and upgrade from htmx 2 (bigskysoftware/htmx, vendored).",
+      "category": "frameworks"
+    },
+    {
+      "name": "alt-go",
+      "source": "./plugins/alt-go",
+      "description": "Comment discipline, goroutine ownership and Go proverbs.",
+      "category": "languages"
+    },
+    {
+      "name": "alt-workflow",
+      "source": "./plugins/alt-workflow",
+      "description": "Lead, design, spec and plan, gates, UI walk, ship, handoff, park, tidy and diet skills, with role agents and the voice hook.",
+      "category": "development"
+    },
+    {
+      "name": "alt-oauth",
+      "source": "./plugins/alt-oauth",
+      "description": "OAuth 2.1, OpenID Connect and MCP authorization checklist by role, with a read-only reviewer agent.",
+      "category": "security"
+    }
+  ]
+}

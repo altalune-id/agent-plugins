@@ -77,7 +77,7 @@ type opencodeServer struct {
 	Headers     map[string]string `json:"headers,omitempty"`
 }
 
-// OpenCodeMCP renders the servers as an opencode config document with an mcp section.
+// OpenCodeMCP renders the servers as an OpenCode config document with an mcp section.
 func OpenCodeMCP(servers map[string]MCPServer) ([]byte, error) {
 	out := map[string]opencodeServer{}
 	for name, s := range servers {
@@ -97,7 +97,7 @@ func OpenCodeMCP(servers map[string]MCPServer) ([]byte, error) {
 	return buf.Bytes(), nil
 }
 
-// RenderMCP converts a Claude .mcp.json file into Codex TOML and opencode JSON files; an empty target is skipped.
+// RenderMCP converts a Claude .mcp.json file into Codex TOML and OpenCode JSON files; an empty target is skipped.
 func RenderMCP(src, codexFile, opencodeFile string) error {
 	data, err := os.ReadFile(src)
 	if err != nil {

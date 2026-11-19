@@ -90,7 +90,7 @@ type permission struct {
 	patterns [][2]string
 }
 
-// OpenCode renders the agent as an opencode subagent markdown file.
+// OpenCode renders the agent as an OpenCode subagent markdown file.
 func (a Agent) OpenCode() []byte {
 	var perms []*permission
 	set := func(tool, action string) {
@@ -170,7 +170,7 @@ func yamlKey(k string) string {
 	return strconv.Quote(k)
 }
 
-// RenderAgents converts every agent markdown file in src into the Codex and opencode directories; an empty target is skipped.
+// RenderAgents converts every agent markdown file in src into the Codex and OpenCode directories; an empty target is skipped.
 func RenderAgents(src, codexDir, opencodeDir string) ([]string, error) {
 	paths, err := filepath.Glob(filepath.Join(src, "*.md"))
 	if err != nil {

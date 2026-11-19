@@ -1,0 +1,10 @@
+{
+  "name": "docs",
+  "version": "1.0.0",
+  "description": "Docs skills.",
+  "license": "0BSD",
+  "author": {
+    "name": "acme"
+  },
+  "skills": "./skills/"
+}

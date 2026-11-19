@@ -1,4 +1,4 @@
-.PHONY: test validate render-check
+.PHONY: test validate render-check manifests manifests-check
 
 test:
 	go test -race ./render/...
@@ -23,3 +23,9 @@ render-check:
 		[ "$$got" -eq "$$want" ] || { echo "$$d: $$got files, want $$want"; exit 1; }; \
 	done; \
 	echo "render ok: $$want agents"
+
+manifests:
+	go run ./render manifests .
+
+manifests-check:
+	go run ./render manifests . --check
