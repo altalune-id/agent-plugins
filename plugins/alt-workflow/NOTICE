@@ -1,0 +1,6 @@
+alt-workflow adapts ideas from:
+
+- obra/superpowers (MIT, Copyright (c) 2025 Jesse Vincent): brainstorming, writing plans, subagent-driven development, verification before completion, receiving code review, systematic debugging.
+- mattpocock/skills (MIT, Copyright (c) 2026 Matt Pocock): grilling, to-spec, to-tickets, tdd, diagnosing bugs, code review, handoff, triage.
+
+No source files are copied; the skills are rewritten.

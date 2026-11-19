@@ -1,0 +1,19 @@
+{
+  "name": "example",
+  "owner": { "name": "acme" },
+  "plugins": [
+    {
+      "name": "lang",
+      "source": { "source": "git-subdir", "url": "https://github.com/acme/skills.git", "path": "lang", "sha": "383c2f8916313b7f1260a6d15d92a468e4ecc89e" },
+      "category": "languages"
+    },
+    {
+      "name": "cli",
+      "source": { "source": "git-subdir", "url": "https://github.com/acme/skills.git", "path": "cli", "sha": "383c2f8916313b7f1260a6d15d92a468e4ecc89e" }
+    },
+    {
+      "name": "tools",
+      "source": { "source": "url", "url": "https://github.com/acme/tools", "sha": "4a6bb39e7b45e26402eb215393c51ccf5df1ca4c" }
+    }
+  ]
+}

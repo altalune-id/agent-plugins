@@ -1,0 +1,9 @@
+{
+  "name": "example",
+  "owner": { "name": "acme" },
+  "plugins": [
+    { "name": "same", "source": { "source": "github", "repo": "acme/same", "ref": "v1.2.0" } },
+    { "name": "head", "source": { "source": "url", "url": "https://github.com/acme/tools.git", "sha": "2222222222222222222222222222222222222222" } },
+    { "name": "branch", "source": { "source": "github", "repo": "acme/same", "ref": "main" } }
+  ]
+}

@@ -1,0 +1,14 @@
+name = "reviewer"
+description = "Reviews a change: correctness, tests and rules. Read-only."
+model = "claude-opus-5-5"
+model_reasoning_effort = "high"
+# not supported in Codex: tools
+# not supported in Codex: disallowedTools
+# not supported in Codex: skills
+# not supported in Codex: mcpServers
+developer_instructions = '''
+Load the skills first.
+
+- Read every changed function in full.
+- Report findings as a table.
+'''

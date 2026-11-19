@@ -1,0 +1,24 @@
+{
+  "mcp": {
+    "bare": {
+      "type": "local",
+      "command": [
+        "serve-mcp"
+      ]
+    },
+    "files": {
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "@example/files-server",
+        "--root",
+        "."
+      ],
+      "environment": {
+        "LOG_LEVEL": "debug",
+        "MODE": "read-only"
+      }
+    }
+  }
+}

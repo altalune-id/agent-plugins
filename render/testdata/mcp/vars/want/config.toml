@@ -1,0 +1,8 @@
+[mcp_servers.db]
+command = "db-mcp"
+args = ["--dsn", "${DATABASE_URL}"]
+env = { DB_PASSWORD = "${DB_PASSWORD}" }
+
+[mcp_servers.tracker]
+url = "${TRACKER_URL}/mcp"
+http_headers = { Authorization = "Bearer ${TRACKER_TOKEN}" }

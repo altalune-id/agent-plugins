@@ -1,0 +1,9 @@
+{
+  "name": "htmx",
+  "description": "htmx 4 guidance, debugging, extensions and upgrade from htmx 2, vendored from bigskysoftware/htmx v4.0.2.",
+  "version": "4.0.2",
+  "license": "0BSD",
+  "author": {
+    "name": "altalune-id"
+  }
+}

@@ -1,0 +1,33 @@
+---
+name: alt-tidy
+description: Use after a piece of work lands, when asked to "tidy", "sweep" or "clean up", or when docs, memory, plans or checklists may be out of date. Finds what could confuse an agent and proposes fixes; also cleans machine leftovers.
+---
+
+# Tidy
+
+Two jobs: keep written context true, and keep the machine clean. Nothing is changed or deleted until the owner says yes.
+
+## Sweep (`/alt-tidy`)
+
+1. **Find candidates** that could mislead an agent: TODOs in code, files under `plans/`, lines in `AGENTS.md` and `CLAUDE.md`, skills, memory files, backlog rows, open issues whose work merged.
+2. **Prove each one.** A fresh subagent checks every candidate against the code and the git history. Plans are checked by their `Status:` line against what is built. Anything it cannot prove outdated stays.
+3. **Propose** a list: archive, update or cut, each with its reason and evidence (file:line, commit, PR).
+4. **On yes:** apply. Updates are fresh text: current truth in present tense, no history, no dates of change. History lives only in issues, specs, plans, ADRs and the git log. Archived files go to the archive folder (`paths.archive` in `workspace.json`), which agents never read.
+
+## Machine cleanup
+
+Check first: no other heavy run active (the heavy-command lock), no other session using the stack.
+
+Standing yes, report after:
+- container volumes no container uses, when the runtime VM is low on disk;
+- `go clean -testcache` and an fstrim of the VM when free disk is under 6 GiB;
+- a stale heavy-command lock (its owner process is dead) while a job waits.
+
+Ask first:
+- worktrees and merged local branches;
+- containers and volumes your runs created that are still there (never the dev stack);
+- dangling images (`image prune`; never remove all images);
+- a full Go build cache clean;
+- scratch and Playwright output folders.
+
+Report free disk before and after.

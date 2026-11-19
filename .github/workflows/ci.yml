@@ -1,0 +1,46 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-go@v6
+        with:
+          go-version-file: render/go.mod
+          cache-dependency-path: render/go.mod
+      - run: go vet ./render/...
+      - run: make test
+      - run: make render-check
+
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Validate catalog and plugin manifests
+        run: |
+          jq -e '.name and .owner.name and (.plugins | type == "array" and length > 0) and all(.plugins[]; .name and .source)' .claude-plugin/marketplace.json >/dev/null
+          for f in plugins/*/.claude-plugin/plugin.json; do
+            jq -e '.name | type == "string"' "$f" >/dev/null || { echo "invalid: $f"; exit 1; }
+          done
+
+  gitleaks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+      - name: gitleaks
+        env:
+          VERSION: 8.30.1
+        run: |
+          curl -sSL "https://github.com/gitleaks/gitleaks/releases/download/v${VERSION}/gitleaks_${VERSION}_linux_x64.tar.gz" | tar xz gitleaks
+          ./gitleaks git . --redact --no-banner

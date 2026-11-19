@@ -1,0 +1,6 @@
+[mcp_servers.docs]
+url = "https://docs.example.com/mcp"
+
+[mcp_servers.search]
+url = "https://search.example.com/mcp"
+http_headers = { X-Client = "agent-plugins" }

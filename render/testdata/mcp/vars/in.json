@@ -1,0 +1,6 @@
+{
+  "mcpServers": {
+    "tracker": { "type": "http", "url": "${TRACKER_URL}/mcp", "headers": { "Authorization": "Bearer ${TRACKER_TOKEN}" } },
+    "db": { "command": "db-mcp", "args": ["--dsn", "${DATABASE_URL}"], "env": { "DB_PASSWORD": "${DB_PASSWORD}" } }
+  }
+}

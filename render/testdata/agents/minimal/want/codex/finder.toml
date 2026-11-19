@@ -1,0 +1,5 @@
+name = "finder"
+description = "Finds code and reports file:line evidence."
+developer_instructions = '''
+You find things and report them.
+'''

@@ -1,0 +1,15 @@
+{
+  "mcp": {
+    "docs": {
+      "type": "remote",
+      "url": "https://docs.example.com/mcp"
+    },
+    "search": {
+      "type": "remote",
+      "url": "https://search.example.com/mcp",
+      "headers": {
+        "X-Client": "agent-plugins"
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "example",
+  "owner": { "name": "acme" },
+  "plugins": [
+    {
+      "name": "ui",
+      "description": "UI skill.",
+      "source": { "source": "git-subdir", "url": "https://github.com/acme/ui.git", "path": "skills/ui", "ref": "v5.10.0" },
+      "strict": false
+    },
+    {
+      "name": "ui-github",
+      "source": { "source": "github", "repo": "acme/ui", "ref": "v5.10.0" }
+    }
+  ]
+}

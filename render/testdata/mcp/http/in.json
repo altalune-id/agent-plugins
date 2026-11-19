@@ -1,0 +1,6 @@
+{
+  "mcpServers": {
+    "docs": { "type": "http", "url": "https://docs.example.com/mcp" },
+    "search": { "type": "http", "url": "https://search.example.com/mcp", "headers": { "X-Client": "agent-plugins" } }
+  }
+}

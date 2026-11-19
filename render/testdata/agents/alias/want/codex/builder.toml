@@ -1,0 +1,10 @@
+name = "builder"
+description = "Builds one task, tests first."
+# model alias sonnet not mapped
+model_reasoning_effort = "xhigh"
+# not supported in Codex: tools
+developer_instructions = """
+Write the test first.
+
+Never write ''' in a TOML literal string.
+"""

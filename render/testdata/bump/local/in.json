@@ -1,0 +1,7 @@
+{
+  "name": "example",
+  "owner": { "name": "acme" },
+  "plugins": [
+    { "name": "workflow", "source": "./plugins/workflow", "category": "development" }
+  ]
+}

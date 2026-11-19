@@ -1,0 +1,22 @@
+{
+  "mcp": {
+    "db": {
+      "type": "local",
+      "command": [
+        "db-mcp",
+        "--dsn",
+        "${DATABASE_URL}"
+      ],
+      "environment": {
+        "DB_PASSWORD": "${DB_PASSWORD}"
+      }
+    },
+    "tracker": {
+      "type": "remote",
+      "url": "${TRACKER_URL}/mcp",
+      "headers": {
+        "Authorization": "Bearer ${TRACKER_TOKEN}"
+      }
+    }
+  }
+}

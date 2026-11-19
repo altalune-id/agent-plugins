@@ -1,0 +1,7 @@
+[mcp_servers.bare]
+command = "serve-mcp"
+
+[mcp_servers.files]
+command = "npx"
+args = ["-y", "@example/files-server", "--root", "."]
+env = { LOG_LEVEL = "debug", MODE = "read-only" }
