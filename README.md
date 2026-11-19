@@ -27,6 +27,7 @@ Claude Code, Codex and opencode in one step:
 | htmx | bigskysoftware/htmx v4.0.2, vendored (0BSD) | htmx 4 guidance, debugging, extensions, upgrade |
 | alt-go | this repo | comment discipline, goroutine ownership, Go proverbs |
 | alt-workflow | this repo | lead, design, spec and plan, gate, UI walk, ship, handoff, park, tidy, diet; role agents; voice hook |
+| alt-oauth | this repo | OAuth 2.1, OIDC and MCP authorization checklist by role; read-only reviewer agent |
 
 ## Develop
 

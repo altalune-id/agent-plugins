@@ -61,6 +61,12 @@
       "description": "Lead, design, spec and plan, gates, UI walk, ship, handoff, park, tidy and diet skills, with role agents and the voice hook.",
       "source": "./plugins/alt-workflow",
       "category": "development"
+    },
+    {
+      "name": "alt-oauth",
+      "description": "OAuth 2.1, OpenID Connect and MCP authorization checklist by role, with a read-only reviewer agent.",
+      "source": "./plugins/alt-oauth",
+      "category": "security"
     }
   ]
 }
