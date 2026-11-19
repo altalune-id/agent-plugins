@@ -15,7 +15,7 @@ One plan per spec. The plan lists the decisions an implementer cannot make alone
 
 ## Plan
 
-File: `plans/<topic>/plan.md`, first line `Status: in progress`.
+File: `plans/<repo>/<topic>/plan.md`, first line `Status: in progress`.
 
 Header:
 - Goal (one sentence), architecture (two or three sentences), stack.

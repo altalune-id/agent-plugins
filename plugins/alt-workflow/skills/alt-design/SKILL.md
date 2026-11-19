@@ -26,7 +26,7 @@ In a message of its own: two or three real approaches grounded in the existing c
 ## 4. Write it down
 
 - A small change: a short note in chat (goal, approach, what's left to the builder) and an OK.
-- A project: a design doc in `plans/<topic>/design.md`, first line `Status: in progress`, covering intent, goals, non-goals, constraints, approaches with the pick, decisions made, what is left to the builder. A fresh reviewer agent reads it cold and returns only questions that change the plan; answer what you can, bring the owner only the rest, in one message.
+- A project: a design doc in `plans/<repo>/<topic>/design.md`, first line `Status: in progress`, covering intent, goals, non-goals, constraints, approaches with the pick, decisions made, what is left to the builder. A fresh reviewer agent reads it cold and returns only questions that change the plan; answer what you can, bring the owner only the rest, in one message.
 
 ## 5. Approval
 

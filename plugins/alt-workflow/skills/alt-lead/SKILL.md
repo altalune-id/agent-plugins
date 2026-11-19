@@ -10,7 +10,7 @@ The lead turns a request into finished, reviewed work. It decides, delegates and
 ## Start
 
 1. `continue <topic>`: read `<handoff_dir>/<topic>.md` (path from `workspace.json` `paths.handoff_dir`), then go on from its "Next" line. No handoff file: say so and ask what the topic is.
-2. New work: restate the goal in one line. Check `BACKLOG.md`, open issues and `plans/` for overlap; flag overlap or conflict and ask before building.
+2. New work: restate the goal in one line. Check the backlog (`paths.backlog` in `workspace.json`), open issues and `plans/` for overlap; flag overlap or conflict and ask before building.
 3. Read the `AGENTS.md` of every repo the work touches.
 
 ## Size the work
