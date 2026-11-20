@@ -42,7 +42,8 @@ Teammates do not preload skills: the brief names them and says "invoke them with
 - Rule on anything that is not the owner's decision, and keep going.
 - At each phase boundary, stop every idle teammate. Respawn with the brief when its lane has work again.
 - The lead starts long-lived dev servers itself; stopping a teammate stops its servers.
-- In a shared worktree, each builder stages only files from its own list.
+- Give a lane its own worktree (`isolation: worktree`, or `git worktree add`) when lanes touch overlapping files or the owner commits in the same checkout. Otherwise, in a shared worktree, each builder stages only files from its own list.
+- Remove each lane worktree once its work is merged or dropped (`git worktree remove`, then `git worktree prune`), and list the ones still open at wrap-up. Ask first before removing one that holds uncommitted work.
 
 ## Decide well
 
