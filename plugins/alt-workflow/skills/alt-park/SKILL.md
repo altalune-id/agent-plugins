@@ -12,18 +12,19 @@ Each item has one home: a backlog row or a GitHub issue, never both.
 | Item | Home |
 |---|---|
 | Work that will become a PR, or that users or reviewers see | GitHub issue in the owning repo |
-| Polish, ideas, nits, cross-repo notes | a row in the backlog (`paths.backlog` in `workspace.json`) |
+| Polish, ideas, nits, cross-repo notes | a card on the `agentboard` board when its MCP tools are available, else a row in the backlog (`paths.backlog` in `workspace.json`) |
 | Blocks a user, admin, deployer, auth or a journey, or leaves a feature half-done | not parked: fix it now |
 
 Say which bucket each finding went to.
 
 ## Before writing
 
-Search for a duplicate: `gh issue list -R <org>/<repo> --state all --search "<words>"` and grep the backlog. If one exists, add to it (a comment, or a sharper row) instead of a new one.
+Search for a duplicate: `gh issue list -R <org>/<repo> --state all --search "<words>"`, and `card_list` on `agentboard` or grep the backlog. If one exists, add to it (a comment, a sharper card or row) instead of a new one.
 
 ## Backlog row
 
-`| Item | Fix | P | Area | Refs |` in the owning repo's table.
+- With `agentboard`: `card_create` with title = item, body = fix, `priority`, `area`, `refs`, `repo` = owning repo.
+- Without it: `| Item | Fix | P | Area | Refs |` in the owning repo's table.
 - P: `P1` blocks or half-done, `P2` real but not blocking, `P3` polish, `later` idea.
 - Area: security, auth, api-mcp, web-ui, cli, ops, tests, docs, data, features.
 - Refs: `repo#N`, `path:line`.
@@ -38,5 +39,5 @@ Search for a duplicate: `gh issue list -R <org>/<repo> --state all --search "<wo
 ## Close the loop
 
 - An item that becomes an issue leaves the backlog.
-- Work that lands: close its issue with the PR link, or delete its backlog row.
+- Work that lands: close its issue with the PR link, or move its card to Done with `card_update` (without `agentboard`, delete its backlog row).
 - A cross-repo bug: one issue per repo, each linking the others.
