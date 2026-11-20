@@ -1,7 +1,7 @@
 ---
 name: alt-architect
 description: Design and planning agent. Use to explore a change, lay out approaches with trade-offs and a recommendation, write or review a design doc, a spec or a phased plan, or read a design cold as the builder check. Read-only on code.
-tools: Read, Grep, Glob, Bash, WebFetch, WebSearch
+tools: Read, Skill, Grep, Glob, Bash, WebFetch, WebSearch
 model: opus
 effort: high
 skills: [alt-design, alt-spec-plan, go-spec-reviewer]

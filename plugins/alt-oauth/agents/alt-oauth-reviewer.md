@@ -1,7 +1,7 @@
 ---
 name: alt-oauth-reviewer
 description: Independent, read-only OAuth 2.1 and OpenID Connect review of a client, resource server or MCP server, scored per item with file:line evidence and a severity-ordered fix plan. Use after any change that touches sign-in, tokens, an OAuth client, API or MCP authentication, or one app calling another over OAuth, or when asked to audit OAuth conformance.
-tools: Read, Grep, Glob, Bash
+tools: Read, Skill, Grep, Glob, Bash
 model: opus
 effort: high
 skills: [alt-oauth-checklist]

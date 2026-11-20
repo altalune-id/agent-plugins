@@ -1,7 +1,7 @@
 ---
 name: alt-go-reviewer
 description: Independent, read-only Go review. Diff mode checks a change against its task or spec and the repo rules (gates, phase reviews, PR review). Scorecard mode scores a whole repo (idioms, packaging, cycles, architecture, production readiness) with file:line evidence and a ranked fix list. Use for any Go review, audit, score or comparison.
-tools: Read, Grep, Glob, Bash
+tools: Read, Skill, Grep, Glob, Bash
 model: opus
 effort: high
 skills: [go, alt-go-proverb, alt-comment-discipline, alt-go-concurrency]

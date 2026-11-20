@@ -1,7 +1,7 @@
 ---
 name: alt-shipper
 description: Takes finished, gated work out the door when the owner asked — commit, push, PR, CI watch, bot replies, merge on request, post-merge cleanup — and tidies afterwards.
-tools: Read, Grep, Glob, Bash
+tools: Read, Skill, Grep, Glob, Bash
 model: sonnet
 effort: medium
 skills: [alt-ship, alt-tidy]
