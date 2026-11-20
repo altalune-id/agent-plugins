@@ -14,6 +14,7 @@ description: Use for any UI change — building from a mock, reviewing a screen,
 - Give builders an explicit box model in numbers, never "match the prototype".
 - Confirm classes with the daisyUI skill and the daisyUI docs MCP; confirm framework APIs with context7.
 - Never backlog an item the brief lists as frontend work without telling the owner.
+- A tool is missing (the Playwright, daisyUI docs or context7 MCP server): don't attempt the work that needs it and don't work around it (no raw Playwright binary, no classes the daisyUI skill doesn't show). Tell the user which server is missing, what it blocks, and how to add it to your harness's MCP config (in Claude Code, install the `alt-mcp` plugin), then continue with the rest. A blocked walk stays owed: the UI change is not done until it is walked.
 
 ## The bar
 

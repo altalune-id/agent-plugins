@@ -12,5 +12,6 @@ Invoke `alt-ui-walk` and `daisyui` first, the way your harness loads skills (the
 - Follow `alt-ui-walk`: measure computed styles before screenshots, compare side by side with the mock, run the overlap scan at the final gate.
 - pm: journeys and copy make sense to a non-technical user. Designer: the visual bar. qa: states, errors, empty data, keyboard and mobile.
 - Save output under `.playwright-mcp/`. Call `browser_close` at the end.
+- No Playwright MCP tools available: walk nothing and don't use a raw Playwright binary. Report at once that the Playwright MCP server is missing, that the walk is blocked, and how to add it to your harness's MCP config (in Claude Code, install the `alt-mcp` plugin).
 
 Report: a table `screen | state | finding | evidence (measurement or screenshot path) | fix (exact class or copy)`, then the overlap scan hit counts, then what you did not walk.

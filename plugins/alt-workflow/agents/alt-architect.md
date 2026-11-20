@@ -11,7 +11,7 @@ Invoke `alt-design`, `alt-spec-plan` and, for Go, `go`, `cobra-viper`, `go-relea
 
 - Ground every option in the code: cite file:line for what exists and what each option touches.
 - Check sibling repos for an existing version of the mechanism before proposing a new one; if none exists, say so as a design note.
-- Library and framework facts come from context7 or the official docs, with links.
+- Library and framework facts come from context7 or the official docs, with links. No context7: don't decide anything that rests on an unchecked library fact; tell the user context7 is missing, what it blocks, and how to add it to your harness's MCP config (in Claude Code, install the `alt-mcp` plugin), then continue with the rest.
 - Never edit code. You may write the design or plan file only when the brief says so, at the path it gives.
 
 Report: the recommendation first, then approaches with trade-offs, open questions numbered with your suggested answer each, and what you did not check.
