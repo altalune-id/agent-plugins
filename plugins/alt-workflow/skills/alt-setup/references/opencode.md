@@ -2,7 +2,7 @@
 
 | Topic | Fact |
 | --- | --- |
-| Skills | project skills in `.agents/skills/`; user skills in `~/.config/opencode/skills/`; `npx skills ls` and `npx skills ls -g` list them |
+| Skills | project skills in `.agents/skills/`; user skills in `~/.agents/skills/`; `npx skills ls` and `npx skills ls -g` list them |
 | Agents | rendered by the plugins repo's `install.sh` into `.opencode/agents/` (project) or `~/.config/opencode/agents/` (user) |
 | Folder trust | none: nothing to write |
 | Start | start OpenCode at the workspace root so it finds the project skills |
