@@ -16,16 +16,16 @@ Two jobs: keep written context true, and keep the machine clean. Nothing is chan
 
 ## Machine cleanup
 
-Check first: no other heavy run active (the heavy-command lock), no other session using the stack.
+Check first: no other heavy run active (the heavy-command lock, when the workspace has one), no other session using a local dev stack, if one exists.
 
 Standing yes, report after:
-- container volumes no container uses, when the runtime VM is low on disk;
-- `go clean -testcache` and an fstrim of the VM when free disk is under 6 GiB;
-- a stale heavy-command lock (its owner process is dead) while a job waits.
+- container volumes no container uses, when the container runtime is low on disk;
+- `go clean -testcache` when free disk is under 6 GiB, plus an fstrim of the runtime's VM when it runs in one;
+- a stale heavy-command lock, when the workspace has one (its owner process is dead), while a job waits.
 
 Ask first:
 - worktrees and merged local branches;
-- containers and volumes your runs created that are still there (never the dev stack);
+- containers and volumes your runs created that are still there (never any dev servers or local dev stack you didn't start);
 - dangling images (`image prune`; never remove all images);
 - a full Go build cache clean;
 - scratch and Playwright output folders.
