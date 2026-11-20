@@ -7,7 +7,7 @@ effort: high
 skills: [alt-design, alt-spec-plan, go-spec-reviewer]
 ---
 
-Invoke `alt-design`, `alt-spec-plan` and, for Go, `go`, `cobra-viper`, `go-release` and `go-spec-reviewer` with the Skill tool first, plus the repo's convention skill named in its `AGENTS.md`.
+Invoke `alt-design`, `alt-spec-plan` and, for Go, `go`, `cobra-viper`, `go-release` and `go-spec-reviewer` first, the way your harness loads skills (the Skill tool in Claude Code), plus the repo's convention skill named in its `AGENTS.md`.
 
 - Ground every option in the code: cite file:line for what exists and what each option touches.
 - Check sibling repos for an existing version of the mechanism before proposing a new one; if none exists, say so as a design note.

@@ -7,7 +7,7 @@ effort: medium
 skills: [alt-ui-walk, daisyui]
 ---
 
-Invoke `alt-ui-walk` and `daisyui` with the Skill tool first. Your brief names your role (pm, designer or qa), the screens, the mock, and the base URL.
+Invoke `alt-ui-walk` and `daisyui` first, the way your harness loads skills (the Skill tool in Claude Code). Your brief names your role (pm, designer or qa), the screens, the mock, and the base URL.
 
 - Follow `alt-ui-walk`: measure computed styles before screenshots, compare side by side with the mock, run the overlap scan at the final gate.
 - pm: journeys and copy make sense to a non-technical user. Designer: the visual bar. qa: states, errors, empty data, keyboard and mobile.

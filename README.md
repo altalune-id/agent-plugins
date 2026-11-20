@@ -14,7 +14,7 @@ Shared skills, role agents, hooks and MCP servers for Go, Vue and htmx work. One
 
 | Plugin | What you get |
 | --- | --- |
-| **alt-workflow** | lead, design, spec and plan, gate, UI walk, ship, handoff, park, tidy and diet skills; role agents; voice hook with `/alt-voice` |
+| **alt-workflow** | lead, design, spec and plan, gate, UI walk, ship, handoff, park, tidy, diet and setup skills; role agents; voice hook with `/alt-voice` |
 | **alt-go** | comment discipline, goroutine ownership, Go proverbs with examples |
 | **alt-oauth** | OAuth 2.1, OIDC and MCP authorization checklist by role; reviewer agent |
 | **alt-mcp** | context7, Playwright and daisyUI docs MCP servers (no secrets) |
@@ -75,6 +75,10 @@ npx skills add spf13/go-skills@<sha> --skill go --agent <codex|opencode|gemini-c
 ### Everything in one step (optional)
 
 From a clone, `./install.sh` installs every plugin into Claude Code and into each of Codex, OpenCode, Gemini CLI and Cursor it finds on `PATH`, upstream skills and agents included. `./install.sh --dry-run` prints the commands first. Needs `jq`, and `go` for Codex or OpenCode agents.
+
+- `--harness claude,codex` installs only into the named tools (`claude`, `codex`, `opencode`, `gemini`, `cursor`).
+- `--scope project` installs into one repo instead of your user: Claude Code plugins at project scope, skills into `.agents/skills/`, agents into `.codex/agents/` and `.opencode/agents/`, each generated path added to the repo's `.git/info/exclude`.
+- `--target <dir>` names that repo; the default is the working directory.
 
 ## What each tool supports
 

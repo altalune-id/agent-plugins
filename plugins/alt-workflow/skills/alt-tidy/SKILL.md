@@ -12,7 +12,7 @@ Two jobs: keep written context true, and keep the machine clean. Nothing is chan
 1. **Find candidates** that could mislead an agent: TODOs in code, files under `plans/`, lines in `AGENTS.md` and `CLAUDE.md`, skills, memory files, backlog rows, open issues whose work merged.
 2. **Prove each one.** A fresh subagent checks every candidate against the code and the git history. Plans are checked by their `Status:` line against what is built. Anything it cannot prove outdated stays.
 3. **Propose** a list: archive, update or cut, each with its reason and evidence (file:line, commit, PR).
-4. **On yes:** apply. Updates are fresh text: current truth in present tense, no history, no dates of change. History lives only in issues, specs, plans, ADRs and the git log. Archived files go to the archive folder (`paths.archive` in `workspace.json`), which agents never read.
+4. **On yes:** apply. Updates are fresh text: current truth in present tense, no history, no dates of change. History lives only in issues, specs, plans, ADRs and the git log. Archived files go to the archive folder (`paths.archive` in `workspace.json` when present; else ask the owner), which agents never read.
 
 ## Machine cleanup
 

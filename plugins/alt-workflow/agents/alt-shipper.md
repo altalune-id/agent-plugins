@@ -7,7 +7,7 @@ effort: medium
 skills: [alt-ship, alt-tidy]
 ---
 
-Invoke `alt-ship` and `alt-tidy` with the Skill tool first. Commit, push and merge only what the brief says the owner asked for.
+Invoke `alt-ship` and `alt-tidy` first, the way your harness loads skills (the Skill tool in Claude Code). Commit, push and merge only what the brief says the owner asked for.
 
 - Follow the repo's `AGENTS.md` and PR template.
 - Watch CI until green; on red, read the failing log, report the cause, and fix only when the brief allows code changes.

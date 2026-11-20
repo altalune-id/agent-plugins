@@ -1,36 +1,46 @@
 ---
 name: alt-setup
-description: Use when setting up the workspace on a new machine, after cloning the home repo, when repos are missing, or when the container runtime or test Postgres choice changes ("set up", "onboard", "bootstrap the workspace").
+description: Use when setting up a repo or workspace on a new machine, after cloning, when tools, repos, plugins or folder trust are missing, or when asked to set up, onboard, bootstrap or check a setup.
 ---
 
 # Setup
 
-The home repo's setup script does the work; this skill drives it and explains the choices. The script path is `paths.setup` in `workspace.json`.
+The repo's own setup entry point does the work; this skill finds it, checks first, and explains each choice.
 
-## Before running
+## 1. Find the entry point
 
-Ask the owner, one message, numbered, with a recommendation each:
+First hit wins:
 
-1. Container runtime: `docker` or `podman`. Recommend the one already installed.
-2. Test Postgres: `dev` (the dev stack's Postgres, shared, fast, no container per test) or `testcontainers` (one container per test binary, isolated, slower). Recommend `dev`.
+1. `paths.setup` in `workspace.json` at the repo root (`git rev-parse --show-toplevel`);
+2. `bin/setup`;
+3. `scripts/setup`;
+4. a `setup` or `bootstrap` target in the `Makefile`;
+5. the README's setup section.
 
-## Run
+Nothing found: say so and stop.
 
-```
-SETUP_RUNTIME=<runtime> SETUP_PG=<dev|testcontainers> SETUP_NONINTERACTIVE=1 <setup>
-```
+## 2. Check first
 
-It reads `workspace.json` and:
-1. clones missing repos into their paths;
-2. links `CLAUDE.md` to `AGENTS.md` where missing;
-3. writes `.local/env` (container runtime, `TEST_PG_DSN` for `dev`) and creates the handoff folder;
-4. installs the shared plugins (`install.sh` of the plugins repo) for Claude, Codex and opencode;
-5. starts the dev stack and waits for Postgres.
+When `<entry> --help` lists `--check`, run `<entry> --check --json` (add `--json` only when the help lists it). Explain each `fail`: its id, detail and fix. Without `--check`, show the command and ask before running it.
 
-Running it again changes nothing that is already in place.
+## 3. Ask
 
-## After
+One message, numbered: each fail with its recommended fix.
 
-- Report what it cloned, linked and wrote.
-- If the runtime socket is missing, the fix is a VM stop and start, then the dev stack up again.
-- Never read `.env` files or secrets while doing this.
+## 4. Apply on yes
+
+Run the entry's non-interactive flags (`--yes` plus the answers), always with `--no-trust`. Never write folder trust from inside a session: the running agent may overwrite its own config. Print the trust command (`<entry> --trust --harness <h>`) for the user to run in a plain terminal.
+
+## 5. Re-check
+
+Run the step 2 check again. Report what passes, what fails and what was written. Say "restart your agent to apply" when `restart` is true, or when the entry wrote plugins, trust or settings.
+
+## Rules
+
+- Never read `.env` files or secrets.
+- Never use `sudo`.
+- Never edit the entry script.
+
+## Per harness
+
+Load `references/<harness>.md` for the harness running this skill: `claude-code`, `codex`, `opencode`, `gemini-cli` or `cursor`.

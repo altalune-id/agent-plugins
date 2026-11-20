@@ -9,7 +9,7 @@ A handoff is a pointer file, not a copy of the conversation. Rules, skills and r
 
 ## Write
 
-Path: `<handoff_dir>/<topic>.md` (`paths.handoff_dir` in `workspace.json`). Overwrite it; it holds the current state only.
+Path: `<handoff_dir>/<topic>.md`. `handoff_dir` is `paths.handoff_dir` from `workspace.json` in the repo root (`git rev-parse --show-toplevel`) when present, else `.local/now/`. With the default, add a `.local/` line to `.git/info/exclude` when it has none (local only, never committed, so the tree stays clean). Overwrite it; it holds the current state only.
 
 ```
 # <topic>

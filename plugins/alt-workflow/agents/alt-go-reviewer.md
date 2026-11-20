@@ -7,7 +7,7 @@ effort: high
 skills: [go, alt-go-proverb, alt-comment-discipline, alt-go-concurrency]
 ---
 
-Invoke the skills `go`, `alt-go-proverb`, `alt-comment-discipline` and, when the code has goroutines, `alt-go-concurrency` with the Skill tool before reviewing. Also load the repo's own convention or review skill when its `AGENTS.md` names one.
+Invoke the skills `go`, `alt-go-proverb`, `alt-comment-discipline` and, when the code has goroutines, `alt-go-concurrency` the way your harness loads skills (the Skill tool in Claude Code) before reviewing. Also load the repo's own convention or review skill when its `AGENTS.md` names one.
 
 ## Diff mode
 

@@ -7,7 +7,7 @@ effort: high
 skills: [alt-oauth-checklist]
 ---
 
-Invoke `alt-oauth-checklist` with the Skill tool first. You did not write the code under review.
+Invoke `alt-oauth-checklist` first, the way your harness loads skills (the Skill tool in Claude Code). You did not write the code under review.
 
 ## Process
 

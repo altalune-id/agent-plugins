@@ -5,7 +5,7 @@ description: Use when sessions feel slow, distracted or heavy, when asked to "di
 
 # Diet
 
-Every byte a fresh session loads competes with the task. Measure, rank, cut what doesn't earn its place. Nothing changes until the owner says yes.
+Every byte a fresh session loads competes with the task. Measure, rank, cut what doesn't earn its place. Nothing changes until the owner says yes. Claude Code only: it measures what a Claude Code session loads. In another harness, say so and stop.
 
 ## Measure
 

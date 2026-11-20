@@ -9,8 +9,8 @@ The lead turns a request into finished, reviewed work. It decides, delegates and
 
 ## Start
 
-1. `continue <topic>`: read `<handoff_dir>/<topic>.md` (path from `workspace.json` `paths.handoff_dir`), then go on from its "Next" line. No handoff file: say so and ask what the topic is.
-2. New work: restate the goal in one line. Check the backlog (`card_list` when the `agentboard` MCP is connected, else `paths.backlog` in `workspace.json`), open issues and `plans/` for overlap; flag overlap or conflict and ask before building.
+1. `continue <topic>`: read the handoff at the path `alt-handoff` gives, then go on from its "Next" line. No handoff file: say so and ask what the topic is.
+2. New work: restate the goal in one line. Check the backlog (where `alt-park` puts it), open issues and `plans/` for overlap; flag overlap or conflict and ask before building.
 3. Read the `AGENTS.md` of every repo the work touches.
 
 ## Size the work
@@ -20,6 +20,8 @@ The lead turns a request into finished, reviewed work. It decides, delegates and
 | Up to about 3 files, or a fix round | the lead | one fresh reviewer agent plus the repo gates |
 | A phase or a feature | teammates, one per lane | reviewer agents per phase, then the repo's merge reviewers |
 | Any UI change | as above | plus `alt-ui-walk` |
+
+Where the harness has no teammates, use subagents; with neither, the lead runs the lanes one after another.
 
 Run work in parallel only when it is really independent. On a small machine, cap heavy lanes at two.
 
@@ -35,11 +37,11 @@ A teammate or subagent knows only its brief. Every brief carries:
 - `card:<id>` for the work's card, so the board links the agent to it;
 - "report once at the end, under N words".
 
-Teammates do not preload skills: the brief names them and says "invoke them with the Skill tool before coding".
+Teammates do not preload skills: the brief names them and says "load them the way your harness loads skills (the Skill tool in Claude Code) before coding".
 
 ## While work runs
 
-- When the `agentboard` MCP is connected, move the work's card as it goes. Work without a card, such as a plan phase, gets one with `card_create` first.
+- When the `agentboard` MCP is connected, move the work's card as it goes. Work without a card, such as a plan phase, gets one with `card_create` first. Without it, a backlog issue closes through its PR.
 
   | When | Call | Card moves to |
   |---|---|---|
@@ -51,7 +53,7 @@ Teammates do not preload skills: the brief names them and says "invoke them with
 - Rule on anything that is not the owner's decision, and keep going.
 - At each phase boundary, stop every idle teammate. Respawn with the brief when its lane has work again.
 - The lead starts long-lived dev servers itself; stopping a teammate stops its servers.
-- Give a lane its own worktree (`isolation: worktree`, or `git worktree add`) when lanes touch overlapping files or the owner commits in the same checkout. Otherwise, in a shared worktree, each builder stages only files from its own list.
+- Give a lane its own worktree (`isolation: worktree` in Claude Code, else `git worktree add`) when lanes touch overlapping files or the owner commits in the same checkout. Otherwise, in a shared worktree, each builder stages only files from its own list.
 - Remove each lane worktree once its work is merged or dropped (`git worktree remove`, then `git worktree prune`), and list the ones still open at wrap-up. Ask first before removing one that holds uncommitted work.
 
 ## Decide well

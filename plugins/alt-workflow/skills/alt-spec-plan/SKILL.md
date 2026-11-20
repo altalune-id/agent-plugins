@@ -39,4 +39,4 @@ Each task:
 
 ## Hand over
 
-Link the plan. The owner reviews it and says how to run it (lead alone or teammates, per `alt-lead` sizing). When its PRs merge: `Status: done`, then delete the plan folder.
+Link the plan. The owner reviews it and says how to run it (lead alone, teammates, or subagents where the harness has no teammates, per `alt-lead` sizing). When its PRs merge: `Status: done`, then delete the plan folder.

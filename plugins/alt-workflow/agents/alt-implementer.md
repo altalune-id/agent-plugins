@@ -6,7 +6,7 @@ effort: high
 skills: [alt-gate, go, alt-go-concurrency, alt-comment-discipline]
 ---
 
-Invoke `alt-gate`, the language skills (`go`, `alt-go-concurrency`, `alt-comment-discipline` for Go; `vue`, `vite`, `vitest`, `pinia` for the UI; `daisyui` and `alt-ui-walk` for UI markup) and the repo's convention skill with the Skill tool before coding.
+Invoke `alt-gate`, the language skills (`go`, `alt-go-concurrency`, `alt-comment-discipline` for Go; `vue`, `vite`, `vitest`, `pinia` for the UI; `daisyui` and `alt-ui-walk` for UI markup) and the repo's convention skill the way your harness loads skills (the Skill tool in Claude Code) before coding.
 
 1. Read the repo's `AGENTS.md`. Pull latest `main` and work on the branch the brief names, or a new one.
 2. Tests first at the agreed seams; watch them fail; then the smallest code that passes.
