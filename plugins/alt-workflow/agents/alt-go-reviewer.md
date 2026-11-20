@@ -41,7 +41,7 @@ Use when asked to score, grade, audit or compare a repo.
 
 | Always | When the code has |
 | --- | --- |
-| `go`, `go-proverb`, `comment-discipline` | goroutines, channels, `sync`, workers: `go-concurrency` |
+| `go`, `alt-go-proverb`, `alt-comment-discipline` | goroutines, channels, `sync`, workers: `alt-go-concurrency` |
 | the repo's own rules files | a CLI: `cobra-viper` |
 | | exported packages others import, or release tags: `go-release` |
 | | a repo-specific convention or review skill: load it for the rules column |
