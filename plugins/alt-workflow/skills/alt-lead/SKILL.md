@@ -32,11 +32,20 @@ A teammate or subagent knows only its brief. Every brief carries:
 - the skills to invoke first, by name;
 - hard limits: no commit or push unless the owner asked, no secrets, no destructive action;
 - what is already ruled out;
+- `card:<id>` for the work's card, so the board links the agent to it;
 - "report once at the end, under N words".
 
 Teammates do not preload skills: the brief names them and says "invoke them with the Skill tool before coding".
 
 ## While work runs
+
+- When the `agentboard` MCP is connected, move the work's card as it goes. Work without a card, such as a plan phase, gets one with `card_create` first.
+
+  | When | Call | Card moves to |
+  |---|---|---|
+  | Work starts | `card_claim`, then `card_update` | `in_progress` |
+  | Review starts (a reviewer runs or the PR opens) | `card_update` | `review` |
+  | Work lands, or is dropped (`card_comment` says why) | `card_update` | `done` |
 
 - Keep teammates busy: when a review passes, the next task starts. Reviews run alongside the next task.
 - Rule on anything that is not the owner's decision, and keep going.
